@@ -19,15 +19,19 @@ public class HotelManagementRepository {
             if(hotel.getHotelName().equals(null)){
                 return "FAILURE";
             }
-            hotelDB.put(hotel.getHotelName(),hotel);
-            return "SUCCESS";
+            else{
+                hotelDB.put(hotel.getHotelName(),hotel);
+                return "SUCCESS";
+            }
         }
         for(String name:hotelDB.keySet()){
             if(name.equals(hotel.getHotelName())){
                 return "FAILURE";
             }
         }
-
+        if(hotel.getHotelName().equals(null)){
+            return "FAILURE";
+        }
         hotelDB.put(hotel.getHotelName(),hotel);
         return "SUCCESS";
     }
