@@ -16,6 +16,9 @@ public class HotelManagementRepository {
     Map<String,Booking> bookinDB=new HashMap<>();
     public String addHotel(Hotel hotel) {
         if(hotelDB.size()==0){
+            if(hotel.getHotelName().equals(null)){
+                return "FAILURE";
+            }
             hotelDB.put(hotel.getHotelName(),hotel);
             return "SUCCESS";
         }
@@ -24,9 +27,7 @@ public class HotelManagementRepository {
                 return "FAILURE";
             }
         }
-        if(hotel.getHotelName().equals(null)){
-            return "FAILURE";
-        }
+
         hotelDB.put(hotel.getHotelName(),hotel);
         return "SUCCESS";
     }
