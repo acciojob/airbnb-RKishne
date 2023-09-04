@@ -18,8 +18,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/hotel")
 public class HotelManagementController {
-    @Autowired
-    HotelManagementService hotelManagementService;
+
+    HotelManagementService hotelManagementService=new HotelManagementService();
     @PostMapping("/add-hotel")
     public String addHotel(@RequestBody Hotel hotel){
 

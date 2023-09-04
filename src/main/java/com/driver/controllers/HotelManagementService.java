@@ -10,8 +10,8 @@ import java.util.List;
 import java.util.UUID;
 
 public class HotelManagementService {
-    @Autowired
-    HotelManagementRepository hotelManagementRepository;
+
+    HotelManagementRepository hotelManagementRepository=new HotelManagementRepository();
     public String addHotel(Hotel hotel) {
         return hotelManagementRepository.addHotel(hotel);
     }
