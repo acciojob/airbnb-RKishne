@@ -29,7 +29,7 @@ public class HotelManagementRepository {
                 return "FAILURE";
             }
         }
-        if(hotel.getHotelName().equals(null)){
+        if(hotel.getHotelName().equals("") || hotel.getHotelName().equals(null)){
             return "FAILURE";
         }
         hotelDB.put(hotel.getHotelName(),hotel);
