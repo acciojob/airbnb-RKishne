@@ -24,12 +24,8 @@ public class HotelManagementRepository {
                 return "FAILURE";
             }
         }
-        for(Map.Entry<String,Hotel> entry:hotelDB.entrySet()){
-            String key= entry.getKey();;
-            Hotel value=entry.getValue();
-            if(key.equals(null) || value==null){
-                return "FAILURE";
-            }
+        if(hotel.getHotelName().equals(null)){
+            return "FAILURE";
         }
         hotelDB.put(hotel.getHotelName(),hotel);
         return "SUCCESS";
