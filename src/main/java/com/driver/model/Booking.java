@@ -1,8 +1,10 @@
 package com.driver.model;
 
+import java.util.UUID;
+
 public class Booking {
 
-    private String bookingId; //This will be a random UUID generated String
+    private String bookingId;//This will be a random UUID generated String
 
     private int bookingAadharCard;
 
