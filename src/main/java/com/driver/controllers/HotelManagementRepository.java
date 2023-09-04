@@ -16,7 +16,8 @@ public class HotelManagementRepository {
     Map<String,Booking> bookinDB=new HashMap<>();
     public String addHotel(Hotel hotel) {
         if(hotelDB.size()==0){
-            return "FAILURE";
+            hotelDB.put(hotel.getHotelName(),hotel);
+            return "SUCCESS";
         }
         for(String name:hotelDB.keySet()){
             if(name.equals(hotel.getHotelName())){
@@ -24,7 +25,7 @@ public class HotelManagementRepository {
             }
         }
         hotelDB.put(hotel.getHotelName(),hotel);
-        return "successfully adding the hotel to the hotelDb";
+        return "SUCCESS";
     }
 
     public Integer addUser(User user) {
@@ -52,6 +53,7 @@ public class HotelManagementRepository {
 
     public int bookARoom(Booking booking) {
         String hotelName=booking.getHotelName();
+        int totalamoutatlast=0;
         for (Map.Entry<String, Hotel> entry : hotelDB.entrySet()) {
             String key = entry.getKey();
             Hotel value = entry.getValue();
@@ -62,22 +64,22 @@ public class HotelManagementRepository {
                 if(personWantBookedRoomNo<=availableRooms){
                     availableRooms-=personWantBookedRoomNo;
                     value.setAvailableRooms(availableRooms);
-                    int totalamoutatlast=personWantBookedRoomNo*hotelPerRoomPrice;
+                    totalamoutatlast=personWantBookedRoomNo*hotelPerRoomPrice;
                     booking.setAmountToBePaid(totalamoutatlast);
                     bookinDB.put(booking.getBookingId(),booking);
                     return totalamoutatlast;
                 }
-                else{
-                    break;
-                }
             }
+        }
+        if(totalamoutatlast==0){
+            return -1;
         }
         return -1;
     }
 
     public int getBookings(Integer aadharCard) {
         int count=0;
-        for (Map.Entry<String, Booking> entry :bookinDB.entrySet()) {
+        for (Map.Entry<String, Booking> entry :bookinDB.entrySet()){
             Booking booking= entry.getValue();
             int bookingadhaarCard=booking.getBookingAadharCard();
             if(bookingadhaarCard==aadharCard){
@@ -88,8 +90,13 @@ public class HotelManagementRepository {
     }
 
     public Hotel updateFacilities(List<Facility> newFacilities, String hotelName) {
-        Hotel hotel=hotelDB.get(hotelName);
-        hotel.setFacilities(newFacilities);
-        return hotel;
+        for (Map.Entry<String, Hotel> entry :hotelDB.entrySet()) {
+            Hotel hotel=entry.getValue();
+            if(hotel.getHotelName().equals(hotelName)){
+                hotel.setFacilities(newFacilities);
+                return hotel;
+            }
+        }
+        return hotelDB.get(hotelName);
     }
 }
