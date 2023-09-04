@@ -1,6 +1,5 @@
 package com.driver.controllers;
 
-import com.driver.HotelManagementService;
 import com.driver.model.Booking;
 import com.driver.model.Facility;
 import com.driver.model.Hotel;
@@ -14,10 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Objects;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/hotel")
