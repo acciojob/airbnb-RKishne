@@ -16,7 +16,7 @@ public class HotelManagementRepository {
     Map<String,Booking> bookinDB=new HashMap<>();
     public String addHotel(Hotel hotel) {
         if(hotelDB.size()==0){
-            if(hotel.getHotelName().equals(null)){
+            if(hotel.getHotelName().isEmpty()){
                 return "FAILURE";
             }
             else{
@@ -29,7 +29,7 @@ public class HotelManagementRepository {
                 return "FAILURE";
             }
         }
-        if(hotel.getHotelName().equals("") || hotel.getHotelName().equals(null)){
+        if(hotel.getHotelName().isEmpty()){
             return "FAILURE";
         }
         hotelDB.put(hotel.getHotelName(),hotel);
